@@ -1,0 +1,308 @@
+{
+  "subjects": [
+    {
+      "title": "JavaScript Fundamentals",
+      "image": "./assets/images/js-brands.svg",
+      "questions": [
+        {
+          "question": "What is the result of typeof null in JavaScript?",
+          "options": ["null", "object", "undefined", "string"],
+          "correct": "object"
+        },
+        {
+          "question": "Which keyword is used to declare variables in ES6?",
+          "options": ["var", "let", "const", "both let and const"],
+          "correct": "both let and const"
+        },
+        {
+          "question": "What does '=== ' operator check?",
+          "options": ["Value only", "Type only", "Both value and type", "Neither"],
+          "correct": "Both value and type"
+        },
+        {
+          "question": "What is a closure in JavaScript?",
+          "options": [
+            "A function that returns another function",
+            "A function with access to its outer scope",
+            "A way to hide variables",
+            "A built-in method"
+          ],
+          "correct": "A function with access to its outer scope"
+        },
+        {
+          "question": "What is the purpose of the 'use strict' directive?",
+          "options": [
+            "Enforce stricter type checking",
+            "Enable ES6 features",
+            "Enforce better coding practices",
+            "All of the above"
+          ],
+          "correct": "Enforce better coding practices"
+        },
+        {
+          "question": "Which method creates new array elements?",
+          "options": ["push()", "map()", "slice()", "concat()"],
+          "correct": "push()"
+        },
+        {
+          "question": "What is the event loop responsible for?",
+          "options": [
+            "DOM manipulation",
+            "Handling async operations",
+            "Memory management",
+            "Garbage collection"
+          ],
+          "correct": "Handling async operations"
+        },
+        {
+          "question": "What does NaN stand for?",
+          "options": [
+            "Not a Node",
+            "Not a Number",
+            "Null and None",
+            "Number Annotation"
+          ],
+          "correct": "Not a Number"
+        },
+        {
+          "question": "Which is NOT a JavaScript framework?",
+          "options": ["React", "Vue", "Django", "Angular"],
+          "correct": "Django"
+        },
+        {
+          "question": "What does API stand for?",
+          "options": [
+            "Application Programming Interface",
+            "Advanced Program Interaction",
+            "Automated Protocol Interface",
+            "Application Process Integration"
+          ],
+          "correct": "Application Programming Interface"
+        }
+      ]
+    },
+    {
+      "title": "Python Programming",
+      "image": "./assets/images/python-brands.svg",
+      "questions": [
+        {
+          "question": "What is used to define a block of code in Python?",
+          "options": ["Curly braces", "Indentation", "Parentheses", "Keywords"],
+          "correct": "Indentation"
+        },
+        {
+          "question": "Which is NOT a Python built-in data structure?",
+          "options": ["List", "Tuple", "HashMap", "Set"],
+          "correct": "HashMap"
+        },
+        {
+          "question": "What does PEP stand for?",
+          "options": [
+            "Python Enhancement Proposal",
+            "Programming Efficiency Protocol",
+            "Python Execution Process",
+            "Programmer's Evaluation Process"
+          ],
+          "correct": "Python Enhancement Proposal"
+        },
+        {
+          "question": "Which keyword creates a function?",
+          "options": ["func", "def", "function", "define"],
+          "correct": "def"
+        },
+        {
+          "question": "What is the output of [x**2 for x in range(3)]?",
+          "options": ["[0,1,4]", "[1,4,9]", "[0,1,4,9]", "Error"],
+          "correct": "[0,1,4]"
+        },
+        {
+          "question": "Which module is used for date handling?",
+          "options": ["datetime", "calendar", "time", "date"],
+          "correct": "datetime"
+        },
+        {
+          "question": "What is the purpose of __init__ method?",
+          "options": [
+            "Initialize class variables",
+            "Destroy objects",
+            "Import modules",
+            "Handle exceptions"
+          ],
+          "correct": "Initialize class variables"
+        },
+        {
+          "question": "Which is used for virtual environments?",
+          "options": ["venv", "virtualenv", "pipenv", "All of the above"],
+          "correct": "All of the above"
+        },
+        {
+          "question": "What does the 'zip()' function do?",
+          "options": [
+            "Compress files",
+            "Combine iterables",
+            "Encrypt data",
+            "Sort elements"
+          ],
+          "correct": "Combine iterables"
+        },
+        {
+          "question": "Which is NOT a Python web framework?",
+          "options": ["Django", "Flask", "Spring", "FastAPI"],
+          "correct": "Spring"
+        }
+      ]
+    },
+    {
+      "title": "Java Essentials",
+      "image": "./assets/images/java-brands.svg",
+      "questions": [
+        {
+          "question": "What is the JVM?",
+          "options": [
+            "Java Virtual Machine",
+            "JavaScript Version Manager",
+            "Java Variable Modifier",
+            "Just-in-Time Compiler"
+          ],
+          "correct": "Java Virtual Machine"
+        },
+        {
+          "question": "Which is NOT a primitive data type?",
+          "options": ["int", "String", "boolean", "double"],
+          "correct": "String"
+        },
+        {
+          "question": "What is method overloading?",
+          "options": [
+            "Same method name with different parameters",
+            "Changing return types",
+            "Inheriting methods",
+            "All of the above"
+          ],
+          "correct": "Same method name with different parameters"
+        },
+        {
+          "question": "Which keyword prevents inheritance?",
+          "options": ["final", "static", "private", "sealed"],
+          "correct": "final"
+        },
+        {
+          "question": "What is the parent class of all classes?",
+          "options": ["Object", "Main", "Super", "Parent"],
+          "correct": "Object"
+        },
+        {
+          "question": "Which is used for multi-threading?",
+          "options": ["Runnable", "Thread", "Both", "None"],
+          "correct": "Both"
+        },
+        {
+          "question": "What is autoboxing?",
+          "options": [
+            "Converting primitive to wrapper class",
+            "Packaging code",
+            "Memory management",
+            "Exception handling"
+          ],
+          "correct": "Converting primitive to wrapper class"
+        },
+        {
+          "question": "Which access modifier is most restrictive?",
+          "options": ["public", "private", "protected", "default"],
+          "correct": "private"
+        },
+        {
+          "question": "What does OOP stand for?",
+          "options": [
+            "Object-Oriented Programming",
+            "Object Optimization Process",
+            "Operational Output Protocol",
+            "Open Object Platform"
+          ],
+          "correct": "Object-Oriented Programming"
+        },
+        {
+          "question": "Which is NOT a Java feature?",
+          "options": [
+            "Pointers",
+            "Garbage Collection",
+            "Multi-threading",
+            "Platform Independence"
+          ],
+          "correct": "Pointers"
+        }
+      ]
+    },
+    {
+      "title": "Data Structures & Algorithms",
+      "image": "./assets/images/chart-diagram-solid.svg",
+      "questions": [
+        {
+          "question": "What is the time complexity of bubble sort?",
+          "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+          "correct": "O(n²)"
+        },
+        {
+          "question": "Which is LIFO structure?",
+          "options": ["Queue", "Stack", "Tree", "Graph"],
+          "correct": "Stack"
+        },
+        {
+          "question": "What does BFS stand for?",
+          "options": [
+            "Breadth-First Search",
+            "Best-First Search",
+            "Binary File System",
+            "Both A and B"
+          ],
+          "correct": "Breadth-First Search"
+        },
+        {
+          "question": "Which is a divide & conquer algorithm?",
+          "options": ["Quick Sort", "Bubble Sort", "Insertion Sort", "Selection Sort"],
+          "correct": "Quick Sort"
+        },
+        {
+          "question": "What is a hash collision?",
+          "options": [
+            "Same hash for different keys",
+            "Invalid hash function",
+            "Duplicate values",
+            "Hash table overflow"
+          ],
+          "correct": "Same hash for different keys"
+        },
+        {
+          "question": "Which data structure uses FIFO?",
+          "options": ["Stack", "Queue", "Array", "Linked List"],
+          "correct": "Queue"
+        },
+        {
+          "question": "What is the Big-O of binary search?",
+          "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+          "correct": "O(log n)"
+        },
+        {
+          "question": "Which is NOT a tree type?",
+          "options": ["Binary", "AVL", "Red-Black", "Circular"],
+          "correct": "Circular"
+        },
+        {
+          "question": "What is dynamic programming?",
+          "options": [
+            "Solving problems using recursion",
+            "Breaking problems into subproblems",
+            "Both A and B",
+            "None"
+          ],
+          "correct": "Both A and B"
+        },
+        {
+          "question": "Which algorithm finds shortest path?",
+          "options": ["Dijkstra", "BFS", "DFS", "Quick Sort"],
+          "correct": "Dijkstra"
+        }
+      ]
+    }
+  ]
+}
