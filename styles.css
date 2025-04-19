@@ -107,6 +107,7 @@ textarea:not([rows]) {
   --clr-text: #626c7f;
   --clr-button-bg: #a729f5;
   --clr-button-text: #ffffff;
+  --clr-button-bg-hover: #8e17ce;
   --clr-radio-text: #283344;
 
   /* Shared Colors (Don't change with theme) */
@@ -345,6 +346,5 @@ h2 {
 }
 
 .start-btn:hover {
-  background-color: #9b1fe0;
-  transform: scale(1.05);
+  background-color: var(--clr-button-bg-hover);
 }
