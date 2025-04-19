@@ -250,7 +250,7 @@ h2 {
 .subjects-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 0.3rem;
   width: 100%;
 }
 
