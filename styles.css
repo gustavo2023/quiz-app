@@ -163,7 +163,7 @@ header {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
   font-weight: 700;
   color: var(--clr-heading);
   text-align: center;
@@ -173,10 +173,10 @@ h1 {
 /* The switch - the box around the slider */
 .switch {
   display: block;
-  --width-of-switch: 3.5em;
-  --height-of-switch: 2em;
+  --width-of-switch: 3.3em;
+  --height-of-switch: 1.6em;
   /* size of sliding icon -- sun and moon */
-  --size-of-icon: 1.4em;
+  --size-of-icon: 1.2em;
   /* it is like a inline-padding of switch */
   --slider-offset: 0.3em;
   position: relative;
@@ -207,8 +207,8 @@ h1 {
 .slider:before {
   position: absolute;
   content: "";
-  height: var(--size-of-icon, 1.4em);
-  width: var(--size-of-icon, 1.4em);
+  height: var(--size-of-icon, 1.2em);
+  width: var(--size-of-icon, 1.2em);
   border-radius: 20px;
   left: var(--slider-offset, 0.3em);
   top: 50%;
@@ -222,7 +222,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
+  left: calc(100% - (var(--size-of-icon, 1.2em) + var(--slider-offset, 0.3em)));
   background: #303136;
   /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
   box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
