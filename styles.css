@@ -101,20 +101,13 @@ textarea:not([rows]) {
 
 :root {
   /* Default (Light Mode) Colors */
-  --clr-body-bg: #f4f6fa;
-  --clr-main-bg: #ffffff;
+  --clr-body-bg: #e9ecf1;
+  --clr-main-bg: #f5f5f5;
   --clr-heading: #313e51;
   --clr-text: #626c7f;
   --clr-button-bg: #a729f5;
   --clr-button-text: #ffffff;
-  --clr-radio-bg: #f4f6fa;
-  --clr-radio-text: #313e51;
-  --clr-radio-border: transparent;
-  --clr-radio-bg-checked: #f6e7ff;
-  --clr-radio-text-checked: #313e51;
-  --clr-radio-border-checked: #a729f5;
-  --clr-icon-fill: #626c7f;
-  --clr-icon-fill-checked: #a729f5;
+  --clr-radio-text: #283344;
 
   /* Shared Colors (Don't change with theme) */
   --clr-correct: #26d782;
@@ -132,14 +125,7 @@ textarea:not([rows]) {
   --clr-text: #abc1e1;
   --clr-button-bg: #a729f5;
   --clr-button-text: #ffffff;
-  --clr-radio-bg: #3b4d66;
   --clr-radio-text: #ffffff;
-  --clr-radio-border: transparent;
-  --clr-radio-bg-checked: #5b3e72;
-  --clr-radio-text-checked: #ffffff;
-  --clr-radio-border-checked: #a729f5;
-  --clr-icon-fill: #abc1e1;
-  --clr-icon-fill-checked: #a729f5;
 }
 
 body {
@@ -166,7 +152,8 @@ h1 {
   font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
   font-weight: 700;
   color: var(--clr-heading);
-  text-align: center;
+  text-align: left;
+  text-wrap: wrap;
 }
 
 /* From Uiverse.io by satyamchaudharydev */
@@ -227,3 +214,37 @@ input:checked + .slider:before {
   /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
   box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
 }
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-main-bg);
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+}
+
+.quiz-config-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-size: clamp(1.2rem, 1.5vw + 0.5rem, 2rem);
+  font-weight: 700;
+  color: var(--clr-heading);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.instructions {
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.5rem);
+  color: var(--clr-text);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+
