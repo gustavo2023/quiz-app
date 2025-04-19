@@ -247,4 +247,85 @@ h2 {
   margin-bottom: 2rem;
 }
 
+.subjects-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+}
 
+.subject-option-container {
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.subject-option-input {
+  /* Hide the actual radio button visually but keep it accessible */
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none; /* Prevent direct interaction */
+}
+
+.subject-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-color: var(--clr-body-bg);
+  color: var(--clr-radio-text);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+  width: 100%;
+}
+
+.subject-icon {
+  width: 28px;
+  height: 28px;
+  transition: fill 0.2s ease;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.subject-icon.js {
+  fill: #ead94c;
+}
+
+.subject-icon.python {
+  fill: #4b8bbe;
+}
+
+.subject-icon.java {
+  fill: #f89820;
+}
+
+.subject-icon.dsa {
+  fill: #c95633;
+}
+
+.subject-text {
+  font-weight: 600;
+}
+
+/* Style when the radio button is checked */
+.subject-option-input:checked + .subject-label {
+  background-color: #e0f2fe;
+  border-color: #38bdf8;
+  color: #0c4a6e;
+}
+
+.subject-option-input:checked + .subject-label .subject-icon {
+  fill: #0ea5e9;
+}
+
+.subject-label:hover {
+  background-color: #d1eafa;
+}
+
+.subject-option-input:focus-visible + .subject-label {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
