@@ -104,9 +104,7 @@ textarea:not([rows]) {
   --clr-body-bg: #e9ecf1;
   --clr-main-bg: #f5f5f5;
   --clr-heading: #313e51;
-  --clr-text: #626c7f;
   --clr-button-bg: #a729f5;
-  --clr-button-text: #ffffff;
   --clr-button-bg-hover: #8e17ce;
   --clr-radio-text: #283344;
 
@@ -114,19 +112,15 @@ textarea:not([rows]) {
   --clr-correct: #26d782;
   --clr-incorrect: #ee5454;
   --clr-primary: #a729f5;
-  --clr-white: #ffffff;
-  --clr-black: #000000;
+  --clr-button-text: #ebeaea;
 }
 
 .dark-mode {
   /* Dark Mode Overrides */
   --clr-body-bg: #313e51;
   --clr-main-bg: #3b4d66;
-  --clr-heading: #ffffff;
-  --clr-text: #abc1e1;
-  --clr-button-bg: #a729f5;
-  --clr-button-text: #ffffff;
-  --clr-radio-text: #ffffff;
+  --clr-heading: #ebeaea;
+  --clr-radio-text: #ebeaea;
 }
 
 body {
@@ -467,4 +461,16 @@ main {
 
 .next-question-btn:hover {
   background-color: var(--clr-button-bg-hover);
+}
+
+.correct {
+  background-color: var(--clr-correct);
+  color: var(--clr-button-text);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.incorrect {
+  background-color: var(--clr-incorrect);
+  color: var(--clr-button-text);
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
