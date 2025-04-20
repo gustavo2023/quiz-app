@@ -233,7 +233,7 @@ main {
   align-items: center;
 }
 
-h2 {
+.introduction {
   font-size: clamp(1.2rem, 1.5vw + 0.5rem, 2rem);
   font-weight: 700;
   color: var(--clr-heading);
@@ -347,4 +347,37 @@ h2 {
 
 .start-btn:hover {
   background-color: var(--clr-button-bg-hover);
+}
+
+.quiz-question-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.quiz-top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.category-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--clr-body-bg);
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.category {
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+  font-weight: 700;
+  color: var(--clr-heading);
+  text-align: left;
+  line-height: 1.2;
 }
