@@ -226,7 +226,7 @@ main {
   border-radius: 10px;
 }
 
-.quiz-config-container {
+.quiz-setup-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
