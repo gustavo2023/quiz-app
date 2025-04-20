@@ -227,7 +227,7 @@ main {
 }
 
 .quiz-setup-container {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -285,26 +285,26 @@ h2 {
   width: 100%;
 }
 
-.subject-icon {
+.icon {
   width: 28px;
   height: 28px;
   transition: fill 0.2s ease;
   flex-shrink: 0; /* Prevent icon from shrinking */
 }
 
-.subject-icon.js {
+.icon.js {
   fill: #ead94c;
 }
 
-.subject-icon.python {
+.icon.python {
   fill: #4b8bbe;
 }
 
-.subject-icon.java {
+.icon.java {
   fill: #f89820;
 }
 
-.subject-icon.dsa {
+.icon.dsa {
   fill: #c95633;
 }
 
