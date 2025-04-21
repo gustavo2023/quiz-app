@@ -15,6 +15,8 @@ const questionTextElement = document.querySelector(".question");
 const timeSpan = document.querySelector(".time");
 const currentQuestionSpan = document.querySelector(".current-question");
 const nextBtn = document.querySelector(".next-question-btn");
+const resultText = document.querySelector(".result-text");
+const restartBtn = document.querySelector(".restart-btn");
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -80,7 +82,6 @@ const displayAnswerOptions = (question, buttons) => {
   }
 
   buttons.forEach((button, index) => {
-    button.style.display = "block"; // Ensure buttons are visible
     if (question.options[index]) {
       button.textContent = question.options[index];
     } else {
@@ -100,12 +101,12 @@ const checkAnswer = (selectedButton) => {
   const selectedAnswer = selectedButton.textContent;
   const correctAnswer = currentQuestion.correct;
 
-  disableAnswerButtons(); // Disable all buttons immediately after selection
-  nextBtn.disabled = false; // Enable the next button
+  disableAnswerButtons();
+  nextBtn.disabled = false;
 
   if (selectedAnswer === correctAnswer) {
     selectedButton.classList.add("correct");
-    score++; // Increment score only if correct
+    score++;
   } else {
     selectedButton.classList.add("incorrect");
     // Find and highlight the correct answer button
@@ -117,20 +118,24 @@ const checkAnswer = (selectedButton) => {
   }
 };
 
+const displayResults = () => {
+  changeDisplayState(quizQuestionContainer, "none");
+  changeDisplayState(quizResultContainer, "flex");
+  const totalQuestions = currentSubjectData.questions.length;
+  resultText.textContent = `Your score: ${score} out of ${totalQuestions}`;
+};
+
 const displayNextQuestion = () => {
   // Reset styles and states for answer buttons before displaying the next question
   answerOptionBtns.forEach((btn) => {
-    btn.classList.remove("correct", "incorrect", "selected"); // Ensure all feedback classes are removed
-    btn.disabled = false; // Re-enable buttons for the next question
+    btn.classList.remove("correct", "incorrect");
+    btn.disabled = false;
   });
-  nextBtn.disabled = true; // Disable the next button until an answer is selected
-  answerSelected = false; // Reset the selection flag for the new question
+  nextBtn.disabled = true; 
+  answerSelected = false;
 
   if (availableQuestions.length === 0) {
-    changeDisplayState(quizQuestionContainer, "none");
-    changeDisplayState(quizResultContainer, "flex"); // Example: Show results
-    // TODO: Display final score and results
-    console.log("Quiz Finished! Score:", score); // Placeholder for results display
+    displayResults();
     return;
   }
 
@@ -156,7 +161,7 @@ const startQuiz = (data) => {
     return;
   }
 
-  currentSubjectData = getSubjectData(selectedSubjectTitle, data); // Store subject data
+  currentSubjectData = getSubjectData(selectedSubjectTitle, data);
   if (!currentSubjectData || !currentSubjectData.questions) {
     console.error(
       "Subject data or questions not found for:",
@@ -167,8 +172,8 @@ const startQuiz = (data) => {
 
   // Initialize quiz state
   availableQuestions = [...currentSubjectData.questions]; // Copy questions
-  currentQuestionIndex = 0; // Reset index for the new quiz
-  score = 0; // Reset score
+  currentQuestionIndex = 0;
+  score = 0;
 
   changeDisplayState(quizSetupContainer, "none");
   changeDisplayState(quizQuestionContainer, "flex");
@@ -186,12 +191,25 @@ fetch("./data.json")
   .then((data) => {
     startBtn.addEventListener("click", () => startQuiz(data));
 
-    // Add event listeners to answer buttons
     answerOptionBtns.forEach((button) => {
       button.addEventListener("click", () => checkAnswer(button));
     });
 
     nextBtn.addEventListener("click", displayNextQuestion);
+
+    restartBtn.addEventListener("click", () => {
+      changeDisplayState(quizResultContainer, "none");
+      changeDisplayState(quizSetupContainer, "flex");
+
+      currentQuestionIndex = 0;
+      score = 0;
+      currentSubjectData = null;
+      availableQuestions = [];
+      currentQuestion = null;
+      answerSelected = false;
+      nextBtn.disabled = true;
+      subjectOptionInputs.forEach(input => input.checked = false);
+    });
   })
   .catch((error) => {
     console.error("Error fetching data:", error);
