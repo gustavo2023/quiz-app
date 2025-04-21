@@ -21,6 +21,7 @@ let score = 0;
 let currentSubjectData = null; // Store data for the selected subject
 let availableQuestions = []; // Store questions not yet asked
 let currentQuestion = null; // Store the current question object
+let answerSelected = false; // Flag to prevent multiple selections
 
 const applyTheme = (theme) => {
   if (theme === "dark") {
@@ -79,25 +80,57 @@ const displayAnswerOptions = (question, buttons) => {
   }
 
   buttons.forEach((button, index) => {
+    button.style.display = "block"; // Ensure buttons are visible
     if (question.options[index]) {
       button.textContent = question.options[index];
     } else {
-      button.style.display = "none";
+      button.style.display = "none"; // Hide button if no option text
     }
   });
+};
+
+const disableAnswerButtons = () => {
+  answerOptionBtns.forEach((btn) => (btn.disabled = true));
+};
+
+const checkAnswer = (selectedButton) => {
+  if (answerSelected) return; // Prevent further action if an answer was already selected
+  answerSelected = true; // Mark that an answer has been selected for this question
+
+  const selectedAnswer = selectedButton.textContent;
+  const correctAnswer = currentQuestion.correct;
+
+  disableAnswerButtons(); // Disable all buttons immediately after selection
+  nextBtn.disabled = false; // Enable the next button
+
+  if (selectedAnswer === correctAnswer) {
+    selectedButton.classList.add("correct");
+    score++; // Increment score only if correct
+  } else {
+    selectedButton.classList.add("incorrect");
+    // Find and highlight the correct answer button
+    answerOptionBtns.forEach((btn) => {
+      if (btn.textContent === correctAnswer) {
+        btn.classList.add("correct");
+      }
+    });
+  }
 };
 
 const displayNextQuestion = () => {
   // Reset styles and states for answer buttons before displaying the next question
   answerOptionBtns.forEach((btn) => {
-    btn.classList.remove("correct", "incorrect", "selected");
+    btn.classList.remove("correct", "incorrect", "selected"); // Ensure all feedback classes are removed
     btn.disabled = false; // Re-enable buttons for the next question
   });
   nextBtn.disabled = true; // Disable the next button until an answer is selected
+  answerSelected = false; // Reset the selection flag for the new question
 
   if (availableQuestions.length === 0) {
     changeDisplayState(quizQuestionContainer, "none");
     changeDisplayState(quizResultContainer, "flex"); // Example: Show results
+    // TODO: Display final score and results
+    console.log("Quiz Finished! Score:", score); // Placeholder for results display
     return;
   }
 
@@ -152,6 +185,11 @@ fetch("./data.json")
   })
   .then((data) => {
     startBtn.addEventListener("click", () => startQuiz(data));
+
+    // Add event listeners to answer buttons
+    answerOptionBtns.forEach((button) => {
+      button.addEventListener("click", () => checkAnswer(button));
+    });
 
     nextBtn.addEventListener("click", displayNextQuestion);
   })
