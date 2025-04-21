@@ -1,11 +1,11 @@
 const body = document.body;
+const themeToggleBtn = document.querySelector('.switch input[type="checkbox"]');
+const currentTheme = localStorage.getItem("theme");
 const quizSetupContainer = document.querySelector(".quiz-setup-container");
 const quizQuestionContainer = document.querySelector(
   ".quiz-question-container"
 );
 const quizResultContainer = document.querySelector(".quiz-result-container");
-const themeToggleBtn = document.querySelector('.switch input[type="checkbox"]');
-const currentTheme = localStorage.getItem("theme");
 
 const applyTheme = (theme) => {
   if (theme === "dark") {
@@ -40,6 +40,7 @@ fetch("./data.json")
   })
   .then((data) => {
     // TODO: Use the fetched data to populate the quiz setup
+    console.log(data);
   })
   .catch((error) => {
     console.error("Error fetching data:", error);
