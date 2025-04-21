@@ -99,8 +99,9 @@ const disableAnswerButtons = () => {
 };
 
 const checkAnswer = (selectedButton) => {
-  if (answerSelected) return; // Prevent further action if an answer was already selected
+  if (answerSelected) return; // Prevent further action if an answer was already selected or time ran out
   answerSelected = true; // Mark that an answer has been selected for this question
+  clearInterval(timerInterval); // Stop the timer once an answer is selected
 
   const selectedAnswer = selectedButton.textContent;
   const correctAnswer = currentQuestion.correct;
@@ -126,6 +127,36 @@ const displayResults = () => {
   changeDisplayState(quizQuestionContainer, "none");
   changeDisplayState(quizResultContainer, "flex");
   resultText.textContent = `Your score: ${score} out of 10`;
+};
+
+const startTimer = () => {
+  timerInterval = setInterval(() => {
+    currentTime--;
+    timeSpan.textContent = `${currentTime}s`;
+
+    if (currentTime <= 0) {
+      clearInterval(timerInterval);
+      disableAnswerButtons();
+      nextBtn.disabled = false;
+
+      // Highlight the correct answer and mark others as incorrect when time runs out
+      const correctAnswer = currentQuestion.correct;
+      answerOptionBtns.forEach((btn) => {
+        if (btn.textContent === correctAnswer) {
+          btn.classList.add("correct");
+        } else {
+          btn.classList.add("incorrect");
+        }
+      });
+      answerSelected = true; // Mark as answered to prevent checkAnswer logic if somehow triggered
+    }
+  }, 1000);
+};
+
+const resetTimer = () => {
+  clearInterval(timerInterval);
+  currentTime = TIME_LIMIT;
+  timeSpan.textContent = `${currentTime}s`;
 };
 
 const displayNextQuestion = () => {
@@ -200,25 +231,6 @@ const restartQuiz = () => {
   answerSelected = false;
   nextBtn.disabled = true;
   subjectOptionInputs.forEach((input) => (input.checked = false));
-};
-
-const startTimer = () => {
-  timerInterval = setInterval(() => {
-    currentTime--;
-    timeSpan.textContent = `${currentTime}s`;
-
-    if (currentTime <= 0) {
-      clearInterval(timerInterval);
-      disableAnswerButtons();
-      nextBtn.disabled = false;
-    }
-  }, 1000);
-};
-
-const resetTimer = () => {
-  clearInterval(timerInterval);
-  currentTime = TIME_LIMIT;
-  timeSpan.textContent = `${currentTime}s`;
 };
 
 fetch("./data.json")
