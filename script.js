@@ -32,3 +32,15 @@ themeToggleBtn.addEventListener("change", () => {
 const changeDisplayState = (element) => {
   element.style.display = element.style.display === "none" ? "flex" : "none";
 };
+
+fetch("./data.json")
+  .then((response) => {
+    if (!response.ok) throw new Error("Failed to fetch data");
+    return response.json();
+  })
+  .then((data) => {
+    // TODO: Use the fetched data to populate the quiz setup
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
