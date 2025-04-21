@@ -1,4 +1,9 @@
 const body = document.body;
+const quizSetupContainer = document.querySelector(".quiz-setup-container");
+const quizQuestionContainer = document.querySelector(
+  ".quiz-question-container"
+);
+const quizResultContainer = document.querySelector(".quiz-result-container");
 const themeToggleBtn = document.querySelector('.switch input[type="checkbox"]');
 const currentTheme = localStorage.getItem("theme");
 
@@ -23,3 +28,7 @@ themeToggleBtn.addEventListener("change", () => {
   applyTheme(newTheme);
   localStorage.setItem("theme", newTheme);
 });
+
+const changeDisplayState = (element) => {
+  element.style.display = element.style.display === "none" ? "flex" : "none";
+};
