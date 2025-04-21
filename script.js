@@ -33,6 +33,11 @@ const changeDisplayState = (element) => {
   element.style.display = element.style.display === "none" ? "flex" : "none";
 };
 
+const getRandomQuestion = (questions) => {
+  const randomIndex = Math.floor(Math.random() * questions.length);
+  return questions[randomIndex];
+};
+
 fetch("./data.json")
   .then((response) => {
     if (!response.ok) throw new Error("Failed to fetch data");
