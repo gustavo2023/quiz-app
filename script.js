@@ -121,8 +121,7 @@ const checkAnswer = (selectedButton) => {
 const displayResults = () => {
   changeDisplayState(quizQuestionContainer, "none");
   changeDisplayState(quizResultContainer, "flex");
-  const totalQuestions = currentSubjectData.questions.length;
-  resultText.textContent = `Your score: ${score} out of ${totalQuestions}`;
+  resultText.textContent = `Your score: ${score} out of 10`;
 };
 
 const displayNextQuestion = () => {
@@ -131,7 +130,7 @@ const displayNextQuestion = () => {
     btn.classList.remove("correct", "incorrect");
     btn.disabled = false;
   });
-  nextBtn.disabled = true; 
+  nextBtn.disabled = true;
   answerSelected = false;
 
   if (availableQuestions.length === 0) {
@@ -183,6 +182,20 @@ const startQuiz = (data) => {
   displayNextQuestion();
 };
 
+const restartQuiz = () => {
+  changeDisplayState(quizResultContainer, "none");
+  changeDisplayState(quizSetupContainer, "flex");
+
+  currentQuestionIndex = 0;
+  score = 0;
+  currentSubjectData = null;
+  availableQuestions = [];
+  currentQuestion = null;
+  answerSelected = false;
+  nextBtn.disabled = true;
+  subjectOptionInputs.forEach((input) => (input.checked = false));
+};
+
 fetch("./data.json")
   .then((response) => {
     if (!response.ok) throw new Error("Failed to fetch data");
@@ -197,19 +210,7 @@ fetch("./data.json")
 
     nextBtn.addEventListener("click", displayNextQuestion);
 
-    restartBtn.addEventListener("click", () => {
-      changeDisplayState(quizResultContainer, "none");
-      changeDisplayState(quizSetupContainer, "flex");
-
-      currentQuestionIndex = 0;
-      score = 0;
-      currentSubjectData = null;
-      availableQuestions = [];
-      currentQuestion = null;
-      answerSelected = false;
-      nextBtn.disabled = true;
-      subjectOptionInputs.forEach(input => input.checked = false);
-    });
+    restartBtn.addEventListener("click", restartQuiz);
   })
   .catch((error) => {
     console.error("Error fetching data:", error);
