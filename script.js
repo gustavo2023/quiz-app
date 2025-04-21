@@ -18,12 +18,16 @@ const nextBtn = document.querySelector(".next-question-btn");
 const resultText = document.querySelector(".result-text");
 const restartBtn = document.querySelector(".restart-btn");
 
+// Global variables
 let currentQuestionIndex = 0;
 let score = 0;
 let currentSubjectData = null; // Store data for the selected subject
 let availableQuestions = []; // Store questions not yet asked
 let currentQuestion = null; // Store the current question object
 let answerSelected = false; // Flag to prevent multiple selections
+const TIME_LIMIT = 15;
+let currentTime = TIME_LIMIT;
+let timerInterval = null;
 
 const applyTheme = (theme) => {
   if (theme === "dark") {
@@ -151,6 +155,8 @@ const displayNextQuestion = () => {
 
   displayQuestionText(currentQuestion);
   displayAnswerOptions(currentQuestion, answerOptionBtns);
+  resetTimer(); // Reset timer for the new question
+  startTimer(); // Start timer for the new question
 };
 
 const startQuiz = (data) => {
@@ -194,6 +200,25 @@ const restartQuiz = () => {
   answerSelected = false;
   nextBtn.disabled = true;
   subjectOptionInputs.forEach((input) => (input.checked = false));
+};
+
+const startTimer = () => {
+  timerInterval = setInterval(() => {
+    currentTime--;
+    timeSpan.textContent = `${currentTime}s`;
+
+    if (currentTime <= 0) {
+      clearInterval(timerInterval);
+      disableAnswerButtons();
+      nextBtn.disabled = false;
+    }
+  }, 1000);
+};
+
+const resetTimer = () => {
+  clearInterval(timerInterval);
+  currentTime = TIME_LIMIT;
+  timeSpan.textContent = `${currentTime}s`;
 };
 
 fetch("./data.json")
