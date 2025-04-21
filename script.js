@@ -1,3 +1,4 @@
+// DOM elements
 const body = document.body;
 const themeToggleBtn = document.querySelector('.switch input[type="checkbox"]');
 const currentTheme = localStorage.getItem("theme");
@@ -11,6 +12,15 @@ const startBtn = document.querySelector(".start-btn");
 const categoryTitle = document.querySelector(".category");
 const answerOptionBtns = document.querySelectorAll(".answer-btn");
 const questionTextElement = document.querySelector(".question");
+const timeSpan = document.querySelector(".time");
+const currentQuestionSpan = document.querySelector(".current-question");
+const nextBtn = document.querySelector(".next-question-btn");
+
+let currentQuestionIndex = 0;
+let score = 0;
+let currentSubjectData = null; // Store data for the selected subject
+let availableQuestions = []; // Store questions not yet asked
+let totalQuestions = 0; // Total questions for the subject
 
 const applyTheme = (theme) => {
   if (theme === "dark") {
@@ -53,21 +63,6 @@ const getSubjectData = (subjectTitle, data) => {
   return data.subjects.find((subject) => subject.title === subjectTitle);
 };
 
-const getRandomQuestion = (subjectData) => {
-  if (
-    !subjectData ||
-    !subjectData.questions ||
-    subjectData.questions.length === 0
-  ) {
-    console.error("No questions found for the subject:", subjectData?.title);
-    return null;
-  }
-
-  const questions = subjectData.questions;
-  const randomIndex = Math.floor(Math.random() * questions.length);
-  return questions[randomIndex];
-};
-
 const displayQuestionText = (question) => {
   if (!question || !question.question) {
     console.error("Invalid question object for displayQuestionText");
@@ -92,6 +87,32 @@ const displayAnswerOptions = (question, buttons) => {
   });
 };
 
+const displayNextQuestion = () => {
+  if (availableQuestions.length === 0) {
+    console.log("Quiz finished!"); // Placeholder for showing results
+    // Optionally disable the next button or show results screen
+    changeDisplayState(quizQuestionContainer, "none");
+    // changeDisplayState(quizResultContainer, 'flex'); // Example: Show results
+    return;
+  }
+
+  currentQuestionIndex++;
+  // Update to only show the current question number
+  currentQuestionSpan.textContent = currentQuestionIndex;
+
+  // Select and remove a random question from the available list
+  const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+  const currentQuestion = availableQuestions.splice(randomIndex, 1)[0]; // Get the question and remove it
+
+  if (!currentQuestion) {
+    console.error("Failed to get the next question.");
+    return;
+  }
+
+  displayQuestionText(currentQuestion);
+  displayAnswerOptions(currentQuestion, answerOptionBtns);
+};
+
 fetch("./data.json")
   .then((response) => {
     if (!response.ok) throw new Error("Failed to fetch data");
@@ -105,21 +126,28 @@ fetch("./data.json")
         return;
       }
 
-      const subjectData = getSubjectData(selectedSubjectTitle, data);
-      if (!subjectData) {
-        console.error("Subject data not found for:", selectedSubjectTitle);
+      currentSubjectData = getSubjectData(selectedSubjectTitle, data); // Store subject data
+      if (!currentSubjectData || !currentSubjectData.questions) {
+        console.error("Subject data or questions not found for:", selectedSubjectTitle);
         return;
       }
 
-      const randomQuestion = getRandomQuestion(subjectData);
-      if (!randomQuestion) return;
+      // Initialize quiz state
+      availableQuestions = [...currentSubjectData.questions]; // Copy questions
+      totalQuestions = availableQuestions.length;
+      currentQuestionIndex = 0; // Reset index for the new quiz
+      score = 0; // Reset score
 
       changeDisplayState(quizSetupContainer, "none");
       changeDisplayState(quizQuestionContainer, "flex");
-      categoryTitle.textContent = subjectData.title;
-      displayQuestionText(randomQuestion);
-      displayAnswerOptions(randomQuestion, answerOptionBtns);
+      categoryTitle.textContent = currentSubjectData.title;
+
+      // Display the first question
+      displayNextQuestion();
     });
+
+    // Add event listener for the next button
+    nextBtn.addEventListener("click", displayNextQuestion);
   })
   .catch((error) => {
     console.error("Error fetching data:", error);
