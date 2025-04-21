@@ -221,7 +221,7 @@ main {
   background-color: var(--clr-main-bg);
   padding: 1.5rem 2rem;
   border-radius: 10px;
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
 .quiz-setup-container {
