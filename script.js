@@ -6,7 +6,7 @@ const quizQuestionContainer = document.querySelector(
   ".quiz-question-container"
 );
 const quizResultContainer = document.querySelector(".quiz-result-container");
-
+const subjectOptionInputs = document.querySelectorAll(".subject-option-input");
 const applyTheme = (theme) => {
   if (theme === "dark") {
     body.classList.add("dark-mode");
@@ -33,8 +33,31 @@ const changeDisplayState = (element) => {
   element.style.display = element.style.display === "none" ? "flex" : "none";
 };
 
-const getRandomQuestion = (questions) => {
+const getSelectedSubject = () => {
+  let selectedSubject = null;
+
+  subjectOptionInputs.forEach((input) => {
+    if (input.checked) {
+      selectedSubject = input.dataset.title;
+    }
+  });
+  return selectedSubject;
+};
+
+const getRandomQuestion = (subjectTitle, data) => {
+  // Find the subject object that matches the selected title
+  const subjectData = data.subjects.find(
+    (subject) => subject.title === subjectTitle
+  );
+
+  if (!subjectData || !subjectData.questions || subjectData.questions.length === 0) {
+    console.error("No questions found for the selected subject:", subjectTitle);
+    return null;
+  }
+
+  const questions = subjectData.questions;
   const randomIndex = Math.floor(Math.random() * questions.length);
+  // Return the question at the random index
   return questions[randomIndex];
 };
 
@@ -45,7 +68,6 @@ fetch("./data.json")
   })
   .then((data) => {
     // TODO: Use the fetched data to populate the quiz setup
-    console.log(data);
   })
   .catch((error) => {
     console.error("Error fetching data:", error);
